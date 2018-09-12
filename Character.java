@@ -10,12 +10,12 @@ public class Character {
 	protected int item_price = 0;
 
 	public void introduce(String name, String job_name) {
-		System.out.println("u„‚Í" + job_name + "‚Ì" + name + "‚¾‚µIv");
+		System.out.println("ç§ã¯" + job_name + "ã®" + name + "ãªã®ã ï¼");
 	}
 
-	public void shopping(Character cha) {
+	/*public void shopping(Character cha) {
 		Character.money -= item_price;
-		System.out.println(cha.name + "‚Í" + item_price + "‚²[‚é‚Ç‚Ì‚¨”ƒ‚¢•¨‚ğ‚µ‚½I");
+		System.out.println(cha.name + "ï¿½ï¿½" + item_price + "ï¿½ï¿½ï¿½[ï¿½ï¿½Ç‚Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½I");
 	}
-
+*/
 }

@@ -12,9 +12,9 @@ public class Hero extends Character {
 	}
 
 	public void attack(Monster mon) {
-		System.out.println(this.name + "‚ÌUŒ‚!");
+		System.out.println(this.name + "ã®æ”»æ’ƒ!");
 		
-		System.out.println(mon.name + "‚Í" + this.power + "‚Ìƒ_ƒ[ƒWI");
+	//	System.out.println(mon.name + "ï¿½ï¿½" + this.power + "ï¿½Ìƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½I");
 
 	}
 

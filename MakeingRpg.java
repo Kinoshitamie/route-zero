@@ -42,10 +42,10 @@ public class MakeingRpg {
 		} while (flg);
 		// Shopping static 変数
 		System.out.println("・・・・・・・・・！");
-		hero.shopping(hero);
+	/*	hero.shopping(hero);
 		System.out.println(hero.name + "はお買い物をしたので所持金が" + hero.money + "に！");//?hero.moneyであってる？
 		wizard.shopping(wizard);
-		System.out.println(wizard.name + "はお買い物をしたので所持金が" + wizard.money + "に！");
+		System.out.println(wizard.name + "はお買い物をしたので所持金が" + wizard.money + "に！");*/
 		// end
 		System.out.println("ひとまずend");
 		scan.close();

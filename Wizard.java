@@ -16,9 +16,9 @@ public class Wizard extends Character {
 
 	}
 	public void magic(Monster mon) {
-		System.out.println(this.name + "‚ÍƒxƒLƒ‰ƒSƒ“‚ğ‚Æ‚È‚¦‚½!");
+		System.out.println(this.name + "ãƒ™ã‚­ãƒ©ã‚´ãƒ³ã‚’å”±ãˆãŸ!");
 		
-		System.out.println(mon.name + "‚Í" + this.power + "‚Ìƒ_ƒ[ƒWI");
+		System.out.println(mon.name + "ã¯" + this.power + "ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼");
 	}
 
 }
