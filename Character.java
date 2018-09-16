@@ -1,21 +1,25 @@
-package MakingRPG;
+package rpg3;
 
 //super class
 public class Character {
+
+	protected String name;
 	protected int hp;
 	protected int power;
-	protected String name;
-	protected String job_name;
-	static int money=200;
-	protected int item_price = 0;
 
-	public void introduce(String name, String job_name) {
-		System.out.println("私は" + job_name + "の" + name + "なのだ！");
+	public int getHp() {
+		return this.hp;
 	}
 
-	/*public void shopping(Character cha) {
-		Character.money -= item_price;
-		System.out.println(cha.name + "��" + item_price + "���[��ǂ̂��������������I");
+	public int getPower() {
+		return this.power;
 	}
-*/
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void damage(int power) {
+		this.hp -= power;
+	}
 }

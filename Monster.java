@@ -1,21 +1,21 @@
-package MakingRPG;
+package rpg3;
 
 //Character subclass
 public class Monster extends Character {
-	//親モンスタークラスから子モンスターをつくることにする
-	
+
 	Monster(String name, int hp) {
+		super();
 		this.name = name;
 		this.hp = hp;
+		this.power = 10;
 	}
 
 	public void appear() {
 		System.out.println(this.name + "が現れた！");
 	}
 
-	public void damage(Character ch) {
-		this.hp -= ch.power;
-		System.out.println(this.name + "のHP" + this.hp);
-		
+	public void attack(Justice jus) {
+		jus.damage(this.power);
 	}
+
 }

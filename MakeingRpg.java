@@ -1,55 +1,93 @@
-package MakingRPG;
+package rpg3;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class MakeingRpg {
 
 	public static void main(String[] args) {
-		boolean flg = true;
+		int justiceHP;
+		int monsterHP;
+		int turn = 1;
+		int whichHero = 0;
+		int whichMon = 0;
+		int seed;
 		
-		Hero hero = new Hero("ゆうたろう", 150, "Hero");	
-		Wizard wizard = new Wizard("そーにゃ", 100, 80, "Wizard");
-		System.out.println("チームの所持金" + Character.money + "です");
-		System.out.println("・・・・・・・・・！");
-		Monster monster = new Monster("ごぶりん", 50);
+		Justice[] hero = new Justice[2];
+		hero[0] = new Justice("ゆうたろう", 50, "Hero");
+		hero[1] = new Justice("らいあん", 50, "Warrior");
 
-		monster.appear();
-		Scanner scan = new Scanner(System.in);
+		Monster[] goblin = new Monster[2];
+		goblin[0] = new Monster("ごぶりん男", 70);
+		goblin[1] = new Monster("ごぶりん子", 60);
+
+		System.out.println("・・・・・・・・・！");
+		goblin[0].appear();
+		goblin[1].appear();
+		System.out.println("  戦闘開始  ");
+		justiceHP = hero[0].getHp() + hero[1].getHp();
+		monsterHP = goblin[0].getHp() + goblin[1].getHp();
+		
 		do {
-			System.out.println("どうしますか?");
-			System.out.println("1：たたかう 2：まもる 3：逃げる");
-			int action = scan.nextInt();
-			switch (action) {
-			case 1:
-				hero.attack(monster);
-				monster.damage(hero);
-				wizard.magic(monster);
-				monster.damage(wizard);
-				flg = false;
+			System.out.println(turn + "ターン");
+
+			// Hero Stage
+			do {
+				seed = new Random().nextInt(2);			
+				if (goblin[seed].getHp() >0) {
+					break;
+				}
+			} while (goblin[seed].getHp() <= 0);
+
+			if (!(hero[whichHero].getHp() <= 0)) {
+				hero[whichHero].attack(goblin[seed]);
+				System.out.println(hero[whichHero].getName() + "の攻撃！！");
+				System.out.println(goblin[seed].getName() + "は" + hero[whichHero].getPower() + "のダメージを受けた（残りHP "+goblin[seed].getHp()+")");
+			} else {
+				System.out.println(hero[whichHero].getName() + "は動けない！");
+			}
+			monsterHP = goblin[0].getHp() + goblin[1].getHp();
+			if (monsterHP <= 0) {
 				break;
-			case 2:
-				System.out.println(hero.name + "達は身を守った!");
-				flg = false;
-				break;
-			case 3:
-				System.out.println(hero.name + "達は逃げ出した!");
-				flg = false;
-				break;
-			default:
-				System.out.println("1～3で入力して");
+			}
+			// Monster Stage
+			do {
+				seed = new Random().nextInt(2);
+				if (hero[seed].getHp() > 0) {
+					break;
+				}
+			} while (hero[seed].getHp() <= 0);
+
+			if (!(goblin[whichMon].getHp() <= 0)) {
+				goblin[whichMon].attack(hero[seed]);
+				System.out.println(goblin[whichMon].getName() + "の攻撃！！");
+				System.out.println(hero[seed].getName() + "は" + goblin[whichMon].getPower() + "のダメージを受けた（残りHP "+hero[seed].getHp()+")");
+			} else {
+				System.out.println(goblin[whichMon].getName() + "　は動けない！");
 			}
 
-		} while (flg);
-		// Shopping static 変数
-		System.out.println("・・・・・・・・・！");
-	/*	hero.shopping(hero);
-		System.out.println(hero.name + "はお買い物をしたので所持金が" + hero.money + "に！");//?hero.moneyであってる？
-		wizard.shopping(wizard);
-		System.out.println(wizard.name + "はお買い物をしたので所持金が" + wizard.money + "に！");*/
-		// end
-		System.out.println("ひとまずend");
-		scan.close();
+			justiceHP = hero[0].getHp() + hero[1].getHp();
+			if (justiceHP <= 0) {
+				break;
+			}
 
+			//　   順番交代
+			whichHero += 1;
+			if (whichHero > 1) {
+				whichHero = 0;
+			}
+			whichMon += 1;
+			if (whichMon > 1) {
+				whichMon = 0;
+			}
+			turn++;
+		} while (justiceHP > 0 || monsterHP > 0);
+
+		if (justiceHP < monsterHP) {
+			System.out.println("勇者達は全滅した");
+		} else {
+			System.out.println("モンスター達をやっつけた！");
+
+		}
 	}
 
 }
