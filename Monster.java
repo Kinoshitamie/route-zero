@@ -14,8 +14,4 @@ public class Monster extends Character {
 		System.out.println(this.name + "が現れた！");
 	}
 
-	public void attack(Justice jus) {
-		jus.damage(this.power);
-	}
-
 }
