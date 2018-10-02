@@ -24,9 +24,18 @@ public class Character {
 	}
 
 	public void damage(Character[] nowAttack, int which, Character[] damageCha, int seed) {
-		nowAttack[which].hp -= power;
-		System.out.println("　　"+damageCha[seed].getName() + "は" + nowAttack[which].getPower() + "のダメージを受けた（残りHP "
+		damageCha[seed].hp = damageCha[seed].hp - nowAttack[which].getPower();
+		System.out.println("　　" + damageCha[seed].getName() + "は" + nowAttack[which].getPower() + "のダメージを受けた（残りHP "
 				+ damageCha[seed].getHp() + ")");
+
+	}
+
+	public void introduce(String name, String job_name) {
+		System.out.println("I am  " + name + ", and  a " + job_name + "！");
+	}
+
+	public void introduce(String name, String job_name, int mp) {
+		System.out.println("I am  " + name + ", and " + job_name + ", my MP is " + mp + "!");
 	}
 
 	public int getHp() {
