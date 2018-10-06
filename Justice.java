@@ -11,28 +11,26 @@ public class Justice extends Character {
 		this.hp = hp;
 		this.job_name = job_name;
 		this.power = 15;
-		this.introduce(name, job_name);
+		this.introduce();
+		this.max_hp=this.hp;
 	}
 
-	Justice(String name, int hp, String job_name, int mp) {
-		super();
-		this.name = name;
-		this.hp = hp;
-		this.job_name = job_name;
-		this.power = 5;
-		this.mp = mp;
-		this.introduce(name, job_name, mp);
+	
+	public void introduce() {
+		System.out.println("I am  " + this.name + ", and  a " + this.job_name + "！");
 	}
-
-	public void heal(Character[] hero, int seed) {
-		hero[seed].hp += this.mp;
-		System.out.println(hero[2].name + "はベホマズンを唱えた！" + hero[seed].name + "は" + this.mp + "回復した");
+	@Override	
+	public boolean attack(Character nowAttack, int which, Character damageCha, int seed) {
+		
+		if (nowAttack.hp <= 0) {
+			return false;
+		} else {			
+			System.out.println(nowAttack.getName() + "の攻撃！！");
+			damageCha.damage(nowAttack, which, damageCha, seed);
+			return true;
+		}
 	}
-
-	public int getMp() {
-		return this.mp;
-	}
-
+	
 	public String getJob_name() {
 		return this.job_name;
 	}

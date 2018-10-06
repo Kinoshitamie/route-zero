@@ -1,47 +1,40 @@
 package rpg3;
 
 //super class
-public class Character {
+public abstract class Character {
 
 	protected String name;
 	protected int hp;
+	protected int max_hp;
 	protected int power;
+	protected boolean life_flg;
+	Character(){
+		this.life_flg=true;
+	}
+	public abstract boolean attack(Character nowAttack, int which, Character damageCha, int seed);
 
-	public boolean attack(Character[] nowAttack, int which, Character[] damageCha, int seed) {
-		String mark;
-		if (nowAttack[which].hp <= 0) {
-			return false;
-		} else {
-			if (nowAttack instanceof Justice[]) {
-				mark = "☆";
-			} else {
-				mark = "★";
-			}
-			System.out.println(mark + nowAttack[which].getName() + "の攻撃！！");
-			damageCha[seed].damage(nowAttack, which, damageCha, seed);
-			return true;
+	public void damage(Character nowAttack, int which, Character damageCha, int seed) {
+		damageCha.hp = damageCha.hp - nowAttack.getPower();
+		System.out.println(
+				damageCha.getName() + "は" + nowAttack.getPower() + "のダメージを受けた（残りHP " + damageCha.getHp() + ")");
+		if(damageCha.hp <=0) {
+			System.out.println(damageCha.name+"is down!");
+			life_flg=false;
+			
 		}
-	}
-
-	public void damage(Character[] nowAttack, int which, Character[] damageCha, int seed) {
-		damageCha[seed].hp = damageCha[seed].hp - nowAttack[which].getPower();
-		System.out.println("　　" + damageCha[seed].getName() + "は" + nowAttack[which].getPower() + "のダメージを受けた（残りHP "
-				+ damageCha[seed].getHp() + ")");
 
 	}
 
-	public void introduce(String name, String job_name) {
-		System.out.println("I am  " + name + ", and  a " + job_name + "！");
-	}
-
-	public void introduce(String name, String job_name, int mp) {
-		System.out.println("I am  " + name + ", and " + job_name + ", my MP is " + mp + "!");
+	public void introduce() {
+		System.out.println("I am  " + this.name );
 	}
 
 	public int getHp() {
 		return this.hp;
 	}
-
+	public int getMaxHp() {
+		return this.max_hp;
+	}
 	public int getPower() {
 		return this.power;
 	}

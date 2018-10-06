@@ -12,6 +12,20 @@ public class Monster extends Character {
 
 	public void appear() {
 		System.out.println(this.name + "が現れた！");
+		this.introduce();
+	}
+	public void introduce() {
+		System.out.println(this.name + "だぞー");
 	}
 
-}
+public boolean attack(Character nowAttack, int which, Character damageCha, int seed) {
+
+	if (nowAttack.hp <= 0) {
+		return false;
+	} else {
+		
+		System.out.println(nowAttack.getName() + "の攻撃！！");
+		damageCha.damage(nowAttack, which, damageCha, seed);
+		return true;
+	}
+}}
