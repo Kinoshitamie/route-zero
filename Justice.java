@@ -12,27 +12,21 @@ public class Justice extends Character {
 		this.job_name = job_name;
 		this.power = 15;
 		this.introduce();
-		this.max_hp=this.hp;
+		this.max_hp = this.hp;
 	}
 
-	
 	public void introduce() {
 		System.out.println("I am  " + this.name + ", and  a " + this.job_name + "！");
 	}
-	@Override	
-	public boolean attack(Character nowAttack, int which, Character damageCha, int seed) {
-		
-		if (nowAttack.hp <= 0) {
+
+	@Override
+	public boolean attack(Character damageCha) {
+		if (this.hp <= 0) {
 			return false;
-		} else {			
-			System.out.println(nowAttack.getName() + "の攻撃！！");
-			damageCha.damage(nowAttack, which, damageCha, seed);
+		} else {
+			System.out.println(getName() + "の攻撃！！");
+			damageCha.damage(this.power, damageCha);
 			return true;
 		}
 	}
-	
-	public String getJob_name() {
-		return this.job_name;
-	}
-
 }

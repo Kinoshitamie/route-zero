@@ -14,18 +14,18 @@ public class Monster extends Character {
 		System.out.println(this.name + "が現れた！");
 		this.introduce();
 	}
+
 	public void introduce() {
 		System.out.println(this.name + "だぞー");
 	}
 
-public boolean attack(Character nowAttack, int which, Character damageCha, int seed) {
-
-	if (nowAttack.hp <= 0) {
-		return false;
-	} else {
-		
-		System.out.println(nowAttack.getName() + "の攻撃！！");
-		damageCha.damage(nowAttack, which, damageCha, seed);
-		return true;
+	public boolean attack(Character damageCha) {
+		if (this.hp <= 0) {
+			return false;
+		} else {
+			System.out.println(getName() + "の攻撃！！");
+			damageCha.damage(this.power, damageCha);
+			return true;
+		}
 	}
-}}
+}

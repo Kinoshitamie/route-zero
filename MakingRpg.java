@@ -3,7 +3,6 @@ package rpg3;
 import java.util.*;
 
 public class MakingRpg {
-
 	public static void main(String[] args) {
 		int justiceHP;
 		int monsterHP;
@@ -19,7 +18,7 @@ public class MakingRpg {
 
 		Justice hero1 = new Justice("ゆうたろう", 50, "Hero");
 		Justice hero2 = new Justice("らいあん", 50, "Warrior");
-		Monk monk = new Monk("そうりょ子", 40, "Monk", 10);
+		Monk monk = new Monk("そうりょ子", 40, 10);
 
 		justice_party[0] = hero1;
 		justice_party[1] = hero2;
@@ -39,7 +38,7 @@ public class MakingRpg {
 		goblin3.appear();
 
 		System.out.println("  戦闘開始  ");
-		//パーティーごとのHP合計
+		// パーティーごとのHP合計
 		justiceHP = 0;
 		for (int i = 0; i < justice_party.length; i++) {
 			justiceHP += justice_party[i].getHp();
@@ -48,37 +47,37 @@ public class MakingRpg {
 		for (int i = 0; i < monster_party.length; i++) {
 			monsterHP += monster_party[i].getHp();
 		}
-		//battle
-		while (justiceHP>0 || monsterHP>0) {
-			System.out.println("  ★ "+turn + " ターン");
-			
+		// battle
+		while (justiceHP > 0 || monsterHP > 0) {
+			System.out.println("  ★ " + turn + " ターン");
+
 			// ☆ Hero Stage
 			do {
 				System.out.println("モンスターHP" + monsterHP + ":勇者達HP" + justiceHP);
-				if (justice_party[whichHero].life_flg== false) {
+				if (justice_party[whichHero].life_flg == false) {
 					System.out.println(justice_party[whichHero].getName() + "は動けない");
 					break;
 				}
-				//HPが0ではないCharacterをランダム								
+				// HPが0ではないCharacterをランダム
 				hero = justice_party[whichHero];
-				
+
 				if (whichHero == 2) {
-					//monkだと味方回復魔法
+					// monkだと味方回復魔法
 					do {
 						seed = new Random().nextInt(3);
 					} while (justice_party[seed].getHp() <= 0);
-					against = justice_party[seed];										
-				}else {
-					//それ以外の職業は敵攻撃
+					against = justice_party[seed];
+				} else {
+					// それ以外の職業は敵攻撃
 					do {
 						seed = new Random().nextInt(3);
 					} while (monster_party[seed].getHp() <= 0);
 					against = monster_party[seed];
 				}
 
-			} while (!justice_party[whichHero].attack(hero, whichHero, against, seed));
+			} while (!justice_party[whichHero].attack(against));
 
-			//モンスターパーティＨＰチェック
+			// モンスターパーティＨＰチェック
 			monsterHP = 0;
 			for (int i = 0; i < monster_party.length; i++) {
 				monsterHP += monster_party[i].getHp();
@@ -89,20 +88,20 @@ public class MakingRpg {
 
 			// ★Monster Stage
 			do {
-				if (monster_party[whichMon].life_flg== false) {
+				if (monster_party[whichMon].life_flg == false) {
 					System.out.println(monster_party[whichMon].getName() + "は動かない");
 					break;
 				}
 				do {
 					seed = new Random().nextInt(3);
 				} while (justice_party[seed].getHp() <= 0);
-				
+
 				against = monster_party[whichMon];
 				hero = justice_party[seed];
-				
-			} while (!monster_party[whichMon].attack(against, whichMon, hero, seed));
-			
-			//HERO　Party HP Check
+
+			} while (!monster_party[whichMon].attack(hero));
+
+			// HERO Party HP Check
 			justiceHP = 0;
 			for (int i = 0; i < justice_party.length; i++) {
 				justiceHP += justice_party[i].getHp();
@@ -110,7 +109,7 @@ public class MakingRpg {
 			if (justiceHP <= 0) {
 				break;
 			}
-			
+
 			// 順番交代
 			whichHero += 1;
 			if (whichHero > 2) {
@@ -122,13 +121,11 @@ public class MakingRpg {
 			}
 			turn++;
 		}
-
 		if (justiceHP < monsterHP) {
 			System.out.println("・・・・・勇者達は全滅した");
 		} else {
 			System.out.println("！！モンスター達をやっつけた！！");
 
 		}
-
 	}
 }
