@@ -1,6 +1,9 @@
-package rpg3;
+package rpgif;
 
-public class Justice extends Character {
+/*
+ * Character subclass
+ */
+public class Justice extends Character implements Movable {
 
 	protected String job_name;
 	protected int mp;
@@ -15,6 +18,12 @@ public class Justice extends Character {
 		this.max_hp = this.hp;
 	}
 
+	@Override
+	public boolean move(Character tagert) {
+		this.attack(tagert);
+		return win_low;
+	}
+
 	public void introduce() {
 		System.out.println("I am  " + this.name + ", and  a " + this.job_name + "！");
 	}
@@ -22,11 +31,14 @@ public class Justice extends Character {
 	@Override
 	public boolean attack(Character damageCha) {
 		if (this.hp <= 0) {
-			return false;
+			win_low = false;
+			return win_low;
 		} else {
 			System.out.println(getName() + "の攻撃！！");
 			damageCha.damage(this.power, damageCha);
-			return true;
+			win_low = true;
+			return win_low;
 		}
 	}
+
 }

@@ -1,7 +1,9 @@
-package rpg3;
+package rpgif;
+/*
+ * Character subclass
+ */
 
-//Character subclass
-public class Monster extends Character {
+public class Monster extends Character implements Movable {
 
 	Monster(String name, int hp) {
 		super();
@@ -10,22 +12,32 @@ public class Monster extends Character {
 		this.power = 10;
 	}
 
+	@Override
+	public boolean move(Character tagert) {
+		this.attack(tagert);
+		return win_low;
+	}
+
+	public boolean attack(Character damageCha) {
+		if (this.hp <= 0) {
+			win_low = false;
+			return win_low;
+
+		} else {
+			System.out.println(getName() + "の攻撃！！");
+			damageCha.damage(this.power, damageCha);
+			win_low = true;
+			return win_low;
+		}
+	}
+
 	public void appear() {
 		System.out.println(this.name + "が現れた！");
 		this.introduce();
 	}
 
 	public void introduce() {
-		System.out.println(this.name + "だぞー");
+		System.out.println("「" + this.name + "だぞー」");
 	}
 
-	public boolean attack(Character damageCha) {
-		if (this.hp <= 0) {
-			return false;
-		} else {
-			System.out.println(getName() + "の攻撃！！");
-			damageCha.damage(this.power, damageCha);
-			return true;
-		}
-	}
 }

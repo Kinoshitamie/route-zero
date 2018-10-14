@@ -1,8 +1,11 @@
-package rpg3;
+package rpgif;
 
-public class Monk extends Character {
+/*
+ * Character subclass
+ */
+public class Monk extends Character implements Movable {
 
-	protected String job_name = "monk";
+	static String job_name = "monk";
 	protected int mp;
 
 	Monk(String name, int hp, int mp) {
@@ -15,14 +18,21 @@ public class Monk extends Character {
 		this.max_hp = this.hp;
 	}
 
+	@Override
+	public boolean move(Character tagert) {
+		this.attack(tagert);
+		return win_low;
+	}
+
 	public void introduce() {
-		System.out.println("私は  " + this.name + "ていう名前で " + this.job_name + "をしてて, MP は " + this.mp + "だわさ");
+		System.out.println("私は  " + this.name + "ていう名前で " + job_name + "をしてて, MP は " + this.mp + "だわさ");
 	}
 
 	public boolean attack(Character damageCha) {
 
 		if (this.hp <= 0) {
-			return false;
+			win_low = false;
+			return win_low;
 		} else {
 
 			damageCha.hp += this.mp; // 回復maxHPまで
@@ -32,7 +42,8 @@ public class Monk extends Character {
 			} else {
 				System.out.println(this.name + "はベホマズンを唱えた！" + damageCha.name + "は" + this.mp + "回復した");
 			}
-			return true;
+			win_low = true;
+			return win_low;
 		}
 	}
 }

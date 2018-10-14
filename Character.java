@@ -1,12 +1,15 @@
-package rpg3;
+package rpgif;
 
-//super class
+/*
+ * abstract
+ */
 public abstract class Character {
 	protected String name;
 	protected int hp;
 	protected int max_hp;
 	protected int power;
 	protected boolean life_flg;
+	protected boolean win_low;
 
 	Character() {
 		this.life_flg = true;
@@ -19,7 +22,7 @@ public abstract class Character {
 		System.out.println(damageCha.getName() + "は" + power + "のダメージを受けた（残りHP " + damageCha.getHp() + ")");
 		if (damageCha.hp <= 0) {
 			System.out.println(damageCha.name + "is down!");
-			life_flg = false;
+			damageCha.life_flg = false;
 		}
 	}
 
