@@ -35,7 +35,7 @@ public class Justice extends Character implements Movable {
 			return win_low;
 		} else {
 			System.out.println(getName() + "の攻撃！！");
-			damageCha.damage(this.power, damageCha);
+			damageCha.damage(this.power);
 			win_low = true;
 			return win_low;
 		}

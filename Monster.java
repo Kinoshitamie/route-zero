@@ -13,8 +13,8 @@ public class Monster extends Character implements Movable {
 	}
 
 	@Override
-	public boolean move(Character tagert) {
-		this.attack(tagert);
+	public boolean move(Character target) {
+		this.attack(target);
 		return win_low;
 	}
 
@@ -25,7 +25,7 @@ public class Monster extends Character implements Movable {
 
 		} else {
 			System.out.println(getName() + "の攻撃！！");
-			damageCha.damage(this.power, damageCha);
+			damageCha.damage(this.power);
 			win_low = true;
 			return win_low;
 		}

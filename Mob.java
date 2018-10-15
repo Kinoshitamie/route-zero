@@ -13,7 +13,7 @@ public class Mob implements Movable {
 	}
 
 	@Override
-	public boolean move(Character tagert) { // なにをかえす？？
+	public boolean move(Character tagert) { 
 		Dignity(tagert);
 		return true;
 	}

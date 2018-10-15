@@ -25,40 +25,34 @@ public class MakingRpg {
 		Justice hero1 = new Justice("ゆうたろう", 50, "Hero");
 		Justice hero2 = new Justice("らいあん", 50, "Warrior");
 		Monk monk = new Monk("そうりょ子", 40, 10);
-		// Dancer dancer=new Dancer("まーにゃ",30);
+		Dancer dancer = new Dancer("まーにゃ", 30);
 		Mob mob = new Mob(); // 王様も参加
 
 		justice_party[0] = hero1;
 		justice_party[1] = hero2;
 		justice_party[2] = monk;
-		// justice_party[3] = dancer;
 
 		Monster goblin1 = new Monster("ごぶりん男", 70);
 		Monster goblin2 = new Monster("ごぶりん子", 60);
 		Monster goblin3 = new Monster("ギガンテス", 60);
-		// Monster goblin4 = new Monster("さぼてんだー", 20);
+		//Monster goblin4 = new Monster("さぼてんだー", 20);待機
 
 		monster_party[0] = goblin1;
 		monster_party[1] = goblin2;
 		monster_party[2] = goblin3;
-		// monster_party[3] = goblin4;
+		//monster_party[3] = goblin4;
 
 		System.out.println("・・・・・・・・・！");
 		goblin1.appear();
 		goblin2.appear();
 		goblin3.appear();
-		// goblin4.appear();
+	//	goblin4.appear();
 
 		System.out.println("  戦闘開始  ");
-		// 各パーティーHP合計( 王様はのぞく)
+		// 各パーティーHP合計( 王様、Dancerはのぞく)
 		justiceHP = 0;
 		for (int i = 0; i < justice_party.length; i++) {
-			if (i < 3) {
-				justiceHP += ((Character) justice_party[i]).getHp(); // キャスト
-			} else {
-				justiceHP += ((Dancer) justice_party[i]).getHp(); // キャスト dancerは別
-			}
-
+			justiceHP += ((Character) justice_party[i]).getHp(); // キャスト
 		}
 		monsterHP = 0;
 		for (int i = 0; i < monster_party.length; i++) {
@@ -93,9 +87,15 @@ public class MakingRpg {
 					} while (((Character) monster_party[seed]).getHp() <= 0);
 
 					against = monster_party[seed];
-					mob.move((Character) against);
+
 				}
 				hero = justice_party[whichHero];
+				if (turn % 2 == 1) {
+					dancer.move((Character) hero);
+				} else {
+
+					mob.move((Character) against);
+				}
 			} while (!hero.move((Character) against));
 
 			// モンスターパーティＨＰチェック
@@ -127,11 +127,7 @@ public class MakingRpg {
 			// HERO Party HP Check
 			justiceHP = 0;
 			for (int i = 0; i < justice_party.length; i++) {
-				if (i < 3) {
-					justiceHP += ((Character) justice_party[i]).getHp(); // キャスト
-				} else {
-					justiceHP += ((Dancer) justice_party[i]).getHp(); // キャスト dancerは別
-				}
+				justiceHP += ((Character) justice_party[i]).getHp(); // キャスト
 			}
 			if (justiceHP <= 0) {
 				break;
@@ -143,7 +139,7 @@ public class MakingRpg {
 				whichHero = 0;
 			}
 			whichMon += 1;
-			if (whichMon > party_people - 1) {
+			if (whichMon > party_people-1) {
 				whichMon = 0;
 			}
 			turn++;

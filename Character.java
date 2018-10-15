@@ -17,12 +17,12 @@ public abstract class Character {
 
 	public abstract boolean attack(Character damageCha);
 
-	public void damage(int power, Character damageCha) {
-		damageCha.hp = damageCha.hp - power;
-		System.out.println(damageCha.getName() + "は" + power + "のダメージを受けた（残りHP " + damageCha.getHp() + ")");
-		if (damageCha.hp <= 0) {
-			System.out.println(damageCha.name + "is down!");
-			damageCha.life_flg = false;
+	public void damage(int power) {
+		this.hp = this.hp - power;
+		System.out.println(this.getName() + "は" + power + "のダメージを受けた（残りHP " + this.getHp() + ")");
+		if (this.hp <= 0) {
+			System.out.println(this.name + "is down!");
+			this.life_flg = false;
 		}
 	}
 
@@ -32,6 +32,10 @@ public abstract class Character {
 
 	public int getHp() {
 		return this.hp;
+	}
+
+	public int getPower() {
+		return this.power;
 	}
 
 	public int getMaxHp() {
