@@ -1,0 +1,55 @@
+<div layout:decorator="layout">
+	<div layout:fragment="contents">
+ 	<h3>kinop掲示板</h3>
+
+	<form method="post" action="/" th:object="${messageForm}">
+			<p>お名前：
+			<input type="text" name="name" size="30"></p>
+			<p>タイトル：
+			<input type="text" name="title" size="30"></p>
+			<p>コメント：
+			<textarea name="comment" rows="4" cols="40">  </textarea></p>
+			<input type="submit"  value="送信する">
+	</form>
+<p th:text="${errMess}"></p>
+<br><br>
+<hr>
+<br><br>
+
+<div th:each="message : ${messages}">
+<table>
+	<tr >
+		<th th:text="'投稿' + ${message.id}"></th>
+		<th>名前</th>
+		<th>タイトル</th>
+
+	</tr>
+	<tr >
+		  <td class="td1" th:text="${message.id}"></td>
+		  <td class="td2" th:text="${message.name}"></td>
+		  <td class="td3" th:text="${message.title}"></td>
+</tr>
+
+	<tr>
+		  <td colspan=4 class="td4" th:text="${message.comment}"></td>
+	</tr>
+		<tr >
+		  <td>
+		 <!--  <form method="get" action="/" th:object="${messageForm}">  -->
+		  	<input type="submit"  value="編集" />
+		  	<input type="hidden" name="b_edit" th:value=${message.id} />
+		 <!-- </form> -->
+		  </td>
+		   <td>
+        <!--  <from method="post" action="/" th:object="${messageForm}"> -->
+                <input type="submit" value="削除" />
+                <input type="hidden" name="b_delete" th:value="${message.id}" />
+         <!--   </from> -->
+        </td>
+	</tr>
+</table>
+<br><br>
+</div>
+
+	</div>
+</div>

@@ -1,0 +1,46 @@
+@charset "UTF-8";
+body{
+	background: #ffe4e1;
+	color: black;
+}
+
+p{
+	font-size:15px;
+	color: #000080;
+}
+h3{
+	font-size:20px;
+	color: #dc143c;
+}
+table {
+    background-color: #ff6633;  /* 背景色指定 */
+    border-collapse:  collapse;     /* セルの線を重ねる */
+    width:300px;
+    border:0;
+    cellspacing:1px;
+}
+th{
+	text-align:left;
+	background-color:#ff6633;
+
+}
+td{
+    border: solid 1px;              /* 枠線指定 */
+    background-color: #ffffff;  /* 背景色指定 */
+}
+td.td1 {
+   width:50px;
+}
+td.td2 {
+   width:100px;
+}
+td.td3 {
+     width:150px;
+}
+td.td4 {
+     width:300px;
+     height:100px;
+}
+
+
+
