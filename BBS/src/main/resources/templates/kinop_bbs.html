@@ -39,7 +39,8 @@
 				</tr>
 				<tr>
 					<td>
-						<form method="post" action="/kinop_edit">
+			<!-- 		<form method="post" action="/kinop_edit"> -->
+						<form th:action="@{/messages/} + ${message.id}" th:method="edit">
 							<input type="hidden" name="id" th:value="${message.id}">
 							<input type="submit" name="ed" value="編集">
 						</form>

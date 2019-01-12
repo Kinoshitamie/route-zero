@@ -11,17 +11,25 @@
 		 <td class="td4" th:text="${message.comment}"></td>
 		 <input type="text"  th:field="${message.title}"/>
 		 -->
-		<form method="post" action="/kinop_bbs" th:object="${messageForm}">
+<!-- <div  th:each"message : ${message}">
+<p th:text=" ${message.id}"></p>
+<p th:text=" ${message.title}"></p>
+</div> -->
 
-			I D:
-			<p th:text="${id}"></p>
+			I D:<td th:text="${id}"></td>
+			<br>
+			タイトル：<p th:text="*{title}"></p>
+      		コメント： <p th:text="*{comment}"></p>
+
+<!-- <form method="post" action="/kinop_bbs" >
 			タイトル：<input type="text" th:field="*{title}" />
-<br><br>
-			<a href="/">
-			<input type="button" value="キャンセル" /></a>
+<br>
+
+<br>
 
 			<input type="submit" value="　更新　" />
-		</form>
-
+		</form> -->
+<a href="/">
+			<input type="button" value="キャンセル" /></a>
 	</div>
 </div>

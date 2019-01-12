@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,15 +36,19 @@ public class HomeController {
 	 * return "kinop_edit"; }
 	 */
 // 編集画面に行く時はaタグ、buttonタグ等を使ってGETでリクエストしてい
-	@PostMapping("/kinop_edit")
-	public String kinopedit(@ModelAttribute MessageForm messageForm, @RequestParam("id") Long id) {
-		Message message = new Message();
-		messageService.findOne(id);
-		// message.id = messageForm.getId();
+	@RequestMapping(value = "messages/{id}")
+	public String kinopedit(@ModelAttribute MessageForm messageForm, @RequestParam("id") Long id, ModelMap modelMap) {
+		Message message =messageService.findOne(id);
+		modelMap.addAttribute("message", message);
+		message.id = messageForm.getId();
 		message.title = messageForm.getTitle();
+		//message.comment = messageForm.getComment();
+
+		modelMap.addAttribute("id",message.id);
+		modelMap.addAttribute("title",message.title);
+		modelMap.addAttribute("comment",message.comment);
 		return "kinop_edit";
 	}
-
 	@RequestMapping(value = "messages/{id}", method = RequestMethod.DELETE)
 	public String destroy(@PathVariable Long id, ModelMap modelMap) {
 		messageService.delete(id);
