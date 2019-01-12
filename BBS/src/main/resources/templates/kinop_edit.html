@@ -1,0 +1,27 @@
+<div layout:decorator="layout">
+	<div layout:fragment="contents">
+		<h3>kinop掲示板編集画面</h3>
+		<p>編集してOKやたら更新て押してください</p>
+		<br>
+		<br>
+		<!--  これを表示したい
+		 <td class="td1" th:text="${message.id}"></td>
+		 <td class="td2" th:text="${message.name}"></td>
+	     <td class="td3" th:text="${message.title}"></td>
+		 <td class="td4" th:text="${message.comment}"></td>
+		 <input type="text"  th:field="${message.title}"/>
+		 -->
+		<form method="post" action="/kinop_bbs" th:object="${messageForm}">
+
+			I D:
+			<p th:text="${id}"></p>
+			タイトル：<input type="text" th:field="*{title}" />
+<br><br>
+			<a href="/">
+			<input type="button" value="キャンセル" /></a>
+
+			<input type="submit" value="　更新　" />
+		</form>
+
+	</div>
+</div>

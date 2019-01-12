@@ -12,11 +12,11 @@ import javax.persistence.Table;
 public class Message {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Integer id;
+  public Long id;
 
   public String name;
   public String title;
   public String comment;
- //public String errMess;
+
 
 }
