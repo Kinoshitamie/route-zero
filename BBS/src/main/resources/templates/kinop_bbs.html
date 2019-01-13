@@ -37,17 +37,17 @@
 				<tr>
 					<td colspan=4 class="td4" th:text="${message.comment}"></td>
 				</tr>
-				<tr>
+			<tr>
 					<td>
-			<!-- 		<form method="post" action="/kinop_edit"> -->
-						<form th:action="@{/messages/} + ${message.id}" th:method="edit">
+						<form  action ="kinop_edit" th:action="@{/messages/} + ${message.id}" method="POST">
 							<input type="hidden" name="id" th:value="${message.id}">
 							<input type="submit" name="ed" value="編集">
 						</form>
 					</td>
 					<td>
-						<form th:action="@{/messages/} + ${message.id}" th:method="delete">
-							<input type="submit" value="削除" />
+						<form th:action="@{/messages/} + ${message.id}" >
+
+							<input type="submit" value="削除" th:method="delete"/>
 						</form>
 					</td>
 				</tr>

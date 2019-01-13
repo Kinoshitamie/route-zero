@@ -26,29 +26,19 @@ public class HomeController {
 		return "kinop_bbs";
 	}
 
-	/*
-	 * @RequestMapping(value = "messages/{id}")
-	 * public String kinopedit(@ModelAttribute MessageForm messageForm,@RequestParam("id")Long
-	 * id,ModelMap modelMap) {
-	 * Message message = new Message();
-	 * messageService.findOne(id);
-	 * message.title = messageForm.getTitle();
-	 * return "kinop_edit"; }
-	 */
 // 編集画面に行く時はaタグ、buttonタグ等を使ってGETでリクエストしてい
 	@RequestMapping(value = "messages/{id}")
-	public String kinopedit(@ModelAttribute MessageForm messageForm, @RequestParam("id") Long id, ModelMap modelMap) {
+	public String kinopedit(@ModelAttribute MessageForm messageForm, @RequestParam("id") Long id, ModelMap modelMap) { 
+	
+	
 		Message message =messageService.findOne(id);
 		modelMap.addAttribute("message", message);
 		message.id = messageForm.getId();
 		message.title = messageForm.getTitle();
-		//message.comment = messageForm.getComment();
-
-		modelMap.addAttribute("id",message.id);
-		modelMap.addAttribute("title",message.title);
-		modelMap.addAttribute("comment",message.comment);
+		message.comment = messageForm.getComment();
 		return "kinop_edit";
 	}
+
 	@RequestMapping(value = "messages/{id}", method = RequestMethod.DELETE)
 	public String destroy(@PathVariable Long id, ModelMap modelMap) {
 		messageService.delete(id);
