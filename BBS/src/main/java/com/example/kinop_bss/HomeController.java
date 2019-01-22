@@ -26,16 +26,11 @@ public class HomeController {
 		return "kinop_bbs";
 	}
 
-// 編集画面に行く時はaタグ、buttonタグ等を使ってGETでリクエストしてい
-	@RequestMapping(value = "messages/{id}")
-	public String kinopedit(@ModelAttribute MessageForm messageForm, @RequestParam("id") Long id, ModelMap modelMap) { 
+	@GetMapping(value="/kinop_edit")
+	public String kinopedit(@ModelAttribute MessageForm messageForm, @PathVariable Long id, ModelMap modelMap) {
 	
-	
-		Message message =messageService.findOne(id);
-		modelMap.addAttribute("message", message);
-		message.id = messageForm.getId();
-		message.title = messageForm.getTitle();
-		message.comment = messageForm.getComment();
+		Message messages =messageService.findOne(id);
+		modelMap.addAttribute("messages", messages);
 		return "kinop_edit";
 	}
 
@@ -68,7 +63,4 @@ public class HomeController {
 		}
 	}
 
-	/*@RequestMapping(value = "/", params = "b_edit", method = RequestMethod.POST)
-	void getOne(String id) {
-	}*/
 }
